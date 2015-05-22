@@ -33,7 +33,8 @@
   "dependencies": {
     "type-name": "^1.0.1",
     "validate.io-array": "^1.0.5",
-    "validate.io-buffer": "^1.0.0",
+    "validate.io-boolean-primitive": "^1.0.0",
+    "validate.io-contains": "^1.0.0",
     "validate.io-function": "^1.0.2",
     "validate.io-number-primitive": "^1.0.0",
     "validate.io-number-primitive-array": "^1.0.0",
@@ -42,11 +43,12 @@
   },
   "devDependencies": {
     "chai": "2.x.x",
-    "mocha": "2.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",
-    "jshint-stylish": "^1.0.0"
+    "jshint-stylish": "^1.0.0",
+    "mocha": "2.x.x",
+    "ndarray": "^1.0.16"
   },
   "licenses": [
     {
