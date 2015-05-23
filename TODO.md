@@ -8,7 +8,8 @@ TODO
 		-	from an `object` which implements set and get
 2. `order` (???)
 	-	name?
-3. 
+3. WARNING:
+	-	dtypes, itypes, btypes, and ctor cache all have to be kept in sync from a dev perspective. A change to one can affect others
 4. remove any unused mods
 5. determine what `dtype` will be
 	-	see `lib/getType.js`
@@ -52,4 +53,5 @@ TODO
 13. casting to different data type
 	-	both main export and factory
 14. determine to handle sparse data structures implemented via objects/hashes.
-15. 
+15. raw api factory
+16. 
