@@ -1,14 +1,14 @@
-ndarray
+
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Multidimensional array constructor.
+> 
 
 
 ## Installation
 
 ``` bash
-$ npm install compute-ndarray
+$ npm install compute-
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -17,7 +17,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-ndarray' );
+var foo = require( 'compute-' );
 ```
 
 #### foo( arr )
@@ -28,7 +28,7 @@ What does this function do?
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-ndarray' );
+var foo = require( 'compute-' );
 ```
 
 To run the example code from the top-level application directory,
@@ -74,7 +74,7 @@ $ make view-cov
 
 ## Copyright
 
-Copyright &copy; 2015. Athan Reines.
+Copyright &copy; 2015. The Compute.io Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-ndarray.svg

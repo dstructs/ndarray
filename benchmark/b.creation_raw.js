@@ -48,7 +48,7 @@ res[ 0 ] = stop[ 0 ] + stop[ 1 ]*1e-9;
 raw = ndarray2.raw;
 start = process.hrtime();
 for ( i = 0; i < len; i++ ) {
-	arr = raw( iArr, [128,128] );
+	arr = raw( iArr, 'float32', [128,128] );
 }
 stop = process.hrtime( start );
 

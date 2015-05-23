@@ -45,7 +45,7 @@ stop = process.hrtime( start );
 res[ 0 ] = stop[ 0 ] + stop[ 1 ]*1e-9;
 
 // Challenger...
-arr = ndarray2.raw( iArr, [128,128] );
+arr = ndarray2.raw( iArr, 'float32', [128,128] );
 start = process.hrtime();
 for ( i = 0; i < len; i++ ) {
 	arr.set( 64, 64, Math.random() );
