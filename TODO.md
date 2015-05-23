@@ -53,11 +53,17 @@ TODO
 13. casting to different data type
 	-	both main export and factory
 14. determine to handle sparse data structures implemented via objects/hashes.
-15. raw api factory
+15. to freeze or not to freeze strides and shape?
+	-	if not, then allow for view corruption
+	-	if yes, then encourage use of `reshape`
 16. [cast mod](matlab)
 	-	see [also](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.astype.html)
 	-	focus on typed arrays; however, can branch out into string <=> boolean, string <=> number, etc.
 17. [class mod](matlab)
 	-	underlying data type
 	- 	compute-array-dtype
-18. 
+18. if provided a numeric value, instead of an array, should this behave like typed arrays?
+	-	initialize an ndarray array as all zeros?
+	-	although this could just as easily be done in userland
+19. stringArray get/set api
+20. 
