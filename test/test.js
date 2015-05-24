@@ -7,7 +7,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Module to be tested:
-	lib = require( './../lib' );
+	ndarray = require( './../lib' );
 
 
 // VARIABLES //
@@ -21,9 +21,19 @@ var expect = chai.expect,
 describe( 'compute-ndarray', function tests() {
 
 	it( 'should export a function', function test() {
-		expect( lib ).to.be.a( 'function' );
+		expect( ndarray ).to.be.a( 'function' );
 	});
 
-	it( 'should do something' );
+	it( 'should export a factory method', function test() {
+		expect( ndarray.factory ).to.be.a( 'function' );
+	});
+
+	it( 'should export a low-level (raw) API', function test() {
+		expect( ndarray.raw ).to.be.a( 'function' );
+	});
+
+	it( 'should export a factory method which wraps the low-level (raw) API', function test() {
+		expect( ndarray.rawFactory ).to.be.a( 'function' );
+	});
 
 });
