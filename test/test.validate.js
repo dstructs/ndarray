@@ -141,7 +141,7 @@ describe( 'validate', function tests() {
 
 		function foo() {
 			validate( 'int32', 10, {
-				'shape': [100, 100 ],
+				'shape': [ 5, 2 ],
 				'strides': [ 1, 2, 3, 4, 5 ]
 			});
 		}
@@ -226,6 +226,27 @@ describe( 'validate', function tests() {
 			'strides': [-10,-1]
 		} );
 		assert.strictEqual( opts.offset, 99 );
+	});
+
+	it( 'should return validated options', function test() {
+		var shape = [10,10],
+			strides = [-10,-1],
+			offset = 99,
+			dtype = 'int32',
+			opts;
+
+		opts = validate( dtype, 100, {
+			'shape': shape,
+			'strides': strides,
+			'offset': offset,
+			'dtype': dtype
+		});
+
+		assert.deepEqual( opts.shape, shape );
+		assert.deepEqual( opts.strides, strides );
+		assert.strictEqual( opts.offset, offset );
+		assert.strictEqual( opts.ndims, shape.length );
+		assert.strictEqual( opts.dtype, dtype );
 	});
 
 });
