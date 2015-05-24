@@ -66,4 +66,8 @@ TODO
 	-	initialize an ndarray array as all zeros?
 	-	although this could just as easily be done in userland
 19. stringArray get/set api
+	-	iget/iset
+	-	mget/mset
+	-	sget/sset
+	-	get/set
 20. 
