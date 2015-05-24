@@ -71,3 +71,16 @@ TODO
 	-	sget/sset
 	-	get/set
 20. 
+
+
+#### Tests
+
+1. ctor
+	-	nbytes
+2. ctor.raw
+3. factory
+4. factory.raw
+5. getType
+6. ndarray
+7. ndarray.raw
+8. 
