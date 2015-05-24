@@ -59,7 +59,7 @@ describe( 'ndarray constructor', function tests() {
 		assert.deepEqual( arr.data, data );
 	});
 
-	it( 'should return not require a `new` operator', function test() {
+	it( 'should not require a `new` operator', function test() {
 		var ndarray,
 			strides,
 			shape,
