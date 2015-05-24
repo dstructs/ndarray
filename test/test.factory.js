@@ -7,7 +7,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Module to be tested:
-	factory = require( './../lib/factory.raw.js' );
+	factory = require( './../lib/factory.js' );
 
 
 // VARIABLES //
@@ -18,7 +18,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'low-level (raw) ndarray factory', function tests() {
+describe( 'ndarray factory', function tests() {
 
 	it( 'should export a function', function test() {
 		expect( factory ).to.be.a( 'function' );
@@ -75,6 +75,32 @@ describe( 'low-level (raw) ndarray factory', function tests() {
 		}
 	});
 
+	it( 'should throw an error if provided a strict option which is not a boolean primitive', function test() {
+		var values = [
+			5,
+			'5',
+			null,
+			undefined,
+			NaN,
+			new Boolean( true ),
+			[],
+			{},
+			function(){}
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+		function badValue( value ) {
+			return function() {
+				factory( {
+					'shape': [ 2, 2 ],
+					'strict': value
+				});
+			};
+		}
+	});
+
 	it( 'should return a function', function test() {
 		var ndarray = factory({
 			'shape': [2,2]
@@ -124,6 +150,59 @@ describe( 'low-level (raw) ndarray factory', function tests() {
 		assert.deepEqual( arr.data, data );
 		assert.deepEqual( arr.shape, shape );
 		assert.strictEqual( arr.dtype, 'generic' );
+	});
+
+	it( 'should throw an error if provided data of an unrecognized/unsupported type', function test() {
+		var values,
+			ndarray;
+
+		values = [
+			'5',
+			null,
+			undefined,
+			function(){},
+			{}
+		];
+
+		ndarray = factory({
+			'shape': [ 2, 2 ]
+		});
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+		function badValue( value ) {
+			return function() {
+				ndarray( value );
+			};
+		}
+	});
+
+	it( 'should throw an error when input data is of a different type and recasting is not desired', function test() {
+		var ndarray = factory({
+			'dtype': 'int32',
+			'shape': [ 2, 2 ],
+			'strict': true
+		});
+
+		expect( foo ).to.throw( TypeError );
+
+		function foo() {
+			ndarray( new Float64Array( 10 ) );
+		}
+	});
+
+	it( 'should throw an error if provided input data incompatible with the view shape', function test() {
+		var ndarray = factory({
+			'dtype': 'int32',
+			'shape': [ 2, 2 ]
+		});
+
+		expect( foo ).to.throw( RangeError );
+
+		function foo() {
+			ndarray( new Int32Array( 1 ) );
+		}
 	});
 
 });

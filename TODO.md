@@ -80,7 +80,7 @@ TODO
 2. ctor.raw
 	-	nbytes
 3. factory
-4. factory.raw
+4. 
 5. getType
 6. ndarray
 7. ndarray.raw
