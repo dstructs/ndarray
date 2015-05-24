@@ -78,6 +78,7 @@ TODO
 1. ctor
 	-	nbytes
 2. ctor.raw
+	-	nbytes
 3. factory
 4. factory.raw
 5. getType
