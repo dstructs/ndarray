@@ -34,12 +34,16 @@
     "type-name": "^1.0.1",
     "validate.io-array": "^1.0.5",
     "validate.io-boolean-primitive": "^1.0.0",
+    "validate.io-boolean-primitive-array": "^1.0.0",
     "validate.io-contains": "^1.0.0",
     "validate.io-function": "^1.0.2",
+    "validate.io-logical-array": "^1.0.0",
     "validate.io-number-primitive": "^1.0.0",
     "validate.io-number-primitive-array": "^1.0.0",
     "validate.io-object": "^1.0.3",
-    "validate.io-positive-integer-array": "^1.0.0"
+    "validate.io-positive-integer-array": "^1.0.0",
+    "validate.io-string-primitive": "^1.0.0",
+    "validate.io-string-primitive-array": "^1.0.0"
   },
   "devDependencies": {
     "chai": "2.x.x",

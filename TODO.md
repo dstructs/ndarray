@@ -19,6 +19,7 @@ TODO
 	-	string (array)
 	-	boolean (array)
 	-	logical (array)
+	-	number (array)
 	- 	mixed => `generic`
 	-	complex => `[real,imaginary]`
 7. benchmarks
@@ -56,6 +57,7 @@ TODO
 15. to freeze or not to freeze strides and shape?
 	-	if not, then allow for view corruption
 	-	if yes, then encourage use of `reshape`
+	- 	opting for **no** to allow for consistent API between raw and strict apis.
 16. [cast mod](matlab)
 	-	see [also](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.astype.html)
 	-	focus on typed arrays; however, can branch out into string <=> boolean, string <=> number, etc.
@@ -78,7 +80,9 @@ TODO
 	-	NumberArray
 		-	this may be an API which sits atop typed arrays. In which case, not necessarily `float64`
 22. should we accept `ArrayBuffer` input data?
-23. 
+23. IntegerArray?
+	-	maybe not as hard to know the bounds
+24. 
 
 
 #### Tests
