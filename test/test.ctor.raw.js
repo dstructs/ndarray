@@ -50,8 +50,7 @@ describe( 'low-level ndarray constructor', function tests() {
 		assert.strictEqual( arr.ndims, shape.length );
 		assert.strictEqual( arr.dtype, 'int32' );
 		assert.strictEqual( arr.length, data.length );
-
-		// TODO: include nbytes
+		assert.strictEqual( arr.nbytes, 4*data.length );
 
 		assert.isFunction( arr.get );
 		assert.isFunction( arr.set );

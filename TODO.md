@@ -9,7 +9,7 @@ TODO
 2. `order` (???)
 	-	name?
 3. WARNING:
-	-	dtypes, itypes, btypes, and ctor cache all have to be kept in sync from a dev perspective. A change to one can affect others
+	-	dtypes, itypes, btypes, nbytes, and ctor cache all have to be kept in sync from a dev perspective. A change to one can affect others
 4. remove any unused mods
 5. determine what `dtype` will be
 	-	see `lib/getType.js`
@@ -70,15 +70,21 @@ TODO
 	-	mget/mset
 	-	sget/sset
 	-	get/set
-20. 
+20. README
+21. confirm underlying data structures for
+	-	StringArray
+	-	BooleanArray
+	-	LogicalArray
+	-	NumberArray
+		-	this may be an API which sits atop typed arrays. In which case, not necessarily `float64`
+22. should we accept `ArrayBuffer` input data?
+23. 
 
 
 #### Tests
 
-1. ctor
-	-	nbytes
-2. ctor.raw
-	-	nbytes
+1. 
+2. 
 3. factory
 4. 
 5. getType
