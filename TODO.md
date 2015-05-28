@@ -2,8 +2,6 @@ TODO
 ====
 
 1. Create custom constructors based on `dtype` and `ndims`
-	-	use `new this.constructor`
-		-	these basically provide shortcuts for internal methods
 	-	ability to use custom `set` and `get`
 		-	from an `object` which implements set and get
 2. `order` (???)
@@ -29,7 +27,7 @@ TODO
 		-	means original data structure does not share the same underlying data
 	- 	update README when supported!!!
 7. benchmarks
-8. is `uint8_clamped` a separate `dtype`?
+8. 
 9. separate mods
 	-	ind2sub
 		-	given an `ndarray` and a sequence of linear indices, return subscripts
@@ -52,12 +50,7 @@ TODO
 		-	what abt functions which filter an `ndarray` and no element satisfies filter?
 			-	could just return `null`, rather than an empty `ndarray`
 			-	this would be similar to how things are handled now with plain arrays
-12. README warnings
-	-	don't mutate `strides`
-	-	don't mutate `shape`
-	-	don't mutate `data`
-	-	=> the view will be corrupted
-	-	while having a `length` prop, an `ndarray` is __not__ array-like, meaning you cannot index into it
+12. 
 13. casting to different data type
 	-	both main export and factory
 14. determine to handle sparse data structures implemented via objects/hashes.
@@ -80,7 +73,7 @@ TODO
 	-	mget/mset
 	-	sget/sset
 	-	get/set
-20. README
+20. 
 21. confirm underlying data structures for
 	-	StringArray
 	-	BooleanArray

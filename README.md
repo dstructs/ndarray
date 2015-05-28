@@ -226,6 +226,25 @@ var len = view.length;
 // returns <number>
 ```
 
+__Note__: while `views` have a `length` property, a `view` should __not__ be considered `array-like`, as `array` indexing will __not__ work as expected.
+
+``` javascript
+var data = new Float32Array( 10 );
+
+var view = ndarray( data, {
+	'shape': [10,1]	
+});
+
+var value = view.get( 3 );
+// returns 0
+
+value = view[ 3 ];
+// returns undefined
+```
+
+
+
+
 <a name="view-nbytes" class="read-only-property"></a>
 #### view.nbytes
 
@@ -382,7 +401,7 @@ Views properties and methods are the same as for the higher-level API, with the 
 *	`nbytes`
 *	`data`
 
-Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, modifying the properties may introduce bugs which are silent. 
+Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, modifying the properties may introduce silent bugs. 
 
 
 <a name="ndarray-raw-constructors"></a>
