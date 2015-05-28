@@ -29,8 +29,9 @@ ndarray
 	-	[ndarray.raw](#ndarray-raw)
 		-	[Views](#ndarray-raw-views)
 		-	[Constructors](#ndarray-raw-constructors)
-	-	[ndarray.factory](#ndarray-factory)
-	-	[ndarray.rawFactory](#ndarray-raw-factory)
+	-	[Factories](#factories)
+		-	[ndarray.factory](#ndarray-factory)
+		-	[ndarray.rawFactory](#ndarray-raw-factory)
 1. [Examples](#examples)
 
 
@@ -392,7 +393,80 @@ Constructors produced using the low-level API have the same interface as those c
 
 
 ===
-### Factory
+### Factories
+
+To facilitate creating `ndarrays`, the module provides factory functions. Using a factory when creating `ndarrays` can dramatically boost creation performance.
+
+
+<a name="ndarray-factory"></a>
+#### ndarray.factory( options )
+
+Creates a reusable `ndarray` factory.
+
+``` javascript
+var factory = ndarray.factory({
+	'shape': [5,2]
+});
+```
+
+The factory method requires that a `shape` is provided and accepts the same `ndarray` options as above.
+
+*	__strides__: view strides.
+* 	__offset__: view offset.
+*	__dtype__: underlying data storage type. Default: `generic`.
+
+One additional option is accepted:
+
+*	__strict__: `boolean` indicating if a factory should accept input `data` having a different data type. Default: `false`, in which case, input `data` of a different data type is cast to `dtype`.
+
+To prevent input `data` having a different data type, set the `strict` option to `true`.
+
+``` javascript
+var factory = ndarray.factory({
+	'dtype': 'float32',
+	'shape': [5,2],
+	'strict': true
+});
+
+var view = factory( new Int8Array( 10 ) );
+// => throws TypeError
+```
+
+
+
+<a name="ndarray-raw-factory"></a>
+#### ndarray.rawFactory( options )
+
+Creates a reusable `ndarray` factory based on the low-level `ndarray` interface.
+
+``` javascript
+var factory = ndarray.rawFactory({
+	'dtype': 'float32',
+	'shape': [5,2]
+});
+```
+
+Similar to the low-level interface, input arguments are __not__ validated and casting is __not__ supported. As casting is not supported, a `strict` option is __not__ supported by this method.
+
+
+
+#### factory( data )
+
+Creates a new multidimensional `array` configured according to the `options` specified when creating a view factory.
+
+``` javascript
+var data = new Float32Array( 10 );
+
+var view = factory( data );
+/* View:
+	[ 0 0 
+	  0 0
+	  0 0
+	  0 0
+	  0 0 ]
+*/
+```
+
 
 
 
