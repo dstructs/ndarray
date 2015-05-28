@@ -27,6 +27,7 @@ TODO
 		-	may need to copy the data ==> use `toArray()` method
 		-	bind the copied data to `.data`
 		-	means original data structure does not share the same underlying data
+	- 	update README when supported!!!
 7. benchmarks
 8. is `uint8_clamped` a separate `dtype`?
 9. separate mods

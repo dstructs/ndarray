@@ -48,6 +48,24 @@ var view = ndarray( data, {
 });
 ```
 
+`dtype` may be any one of the following:
+
+* 	`int8`
+* 	`uint8`
+* 	`uint8_clamped`
+* 	`int16`
+*	`uint16`
+*	`int32`
+*	`uint32`
+*	`float32`
+*	`float64`
+*	`binary`
+*	`string` (not currently supported)
+*	`boolean` (not currently supported)
+*	`logical` (not currently supported)
+*	`generic`
+
+
 To create multidimensional views, specify the view `shape`.
 
 ``` javascript
@@ -103,6 +121,96 @@ var view = ndarray( data, {
 	  16 17
 	  18 19 ]
 */
+```
+
+### Views
+
+Multidimensional views have the following properties and methods...
+
+
+#### view.dtype
+
+A __read-only__ property returning the underlying storage data type.
+
+``` javascript
+var dtype = view.dtype;
+// returns <string>
+```
+
+
+#### view.ndims
+
+A __read-only__ property returning the number of view dimensions.
+
+``` javascript
+var ndims = view.ndims;
+// returns <number>
+```
+
+
+#### view.offset
+
+A __read-only__ property returning the view `offset`.
+
+``` javascript
+var offset = view.offset;
+// returns <number>
+```
+
+#### view.strides
+
+A __read-only__ property returning the view `strides`.
+
+``` javascript
+var strides = view.strides;
+// returns [...]
+```
+
+#### view.shape
+
+A __read-only__ property returning the view `shape`.
+
+``` javascript
+var shape = view.shape;
+// returns [...]
+```
+
+#### view.length
+
+A __ready-only__ property returning the view `length`; i.e., how many elements are in the view, similar to `Array#length`.
+
+``` javascript
+var len = view.length;
+// returns <number>
+```
+
+#### view.nbytes
+
+A __read-only__ property returning the number of bytes consumed by the view elements.
+
+``` javascript
+var nbytes = view.nbytes;
+// returns <number>
+```
+
+__Note__: this property can __only__ be calculated for typed arrays and Buffers. For any other underlying storage type, the number of bytes cannot be reliably calculated and this property is `null`.
+
+``` javascript
+var view = ndarray( new Array( 10 ), {
+	'dtype': 'generic'
+});
+
+var nbytes = view.nbytes;
+// returns null
+```
+
+#### view.data
+
+A __read-only__ property pointing to the underlying storage array.
+
+``` javascript
+var data = view.data;
+// returns [...]
 ```
 
 
