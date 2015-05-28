@@ -232,7 +232,7 @@ __Note__: while `views` have a `length` property, a `view` should __not__ be con
 var data = new Float32Array( 10 );
 
 var view = ndarray( data, {
-	'shape': [10] // 10x1
+	'shape': [10] // 1x10
 });
 
 var value = view.get( 3 );
