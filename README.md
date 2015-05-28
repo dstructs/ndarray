@@ -1,14 +1,14 @@
-
+ndarray
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> 
+> Multidimensional arrays.
 
 
 ## Installation
 
 ``` bash
-$ npm install compute-
+$ npm install compute-ndarray
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -17,18 +17,102 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-' );
+var ndarray = require( 'compute-ndarray' );
 ```
 
-#### foo( arr )
+#### ndarray( data[, options] )
 
-What does this function do?
+Creates a new multidimensional `array`.
+
+``` javascript
+var data = new Float32Array( 10 );
+
+var view = ndarray( data );
+```
+
+The `ndarray` constructor accepts the following `options`:
+
+*	__dtype__: specifies the underlying storage data type. If the input `data` is not of the same type, the `data` is cast to the specified `dtype`.
+*	__shape__: specifies the array `shape`. Default: `[ data.length ]`.
+*	__strides__: specifies the array `strides`, which describe how to index into the input `data` array to create a multidimensional view.
+*	__offset__: specifies the view `offset`, which points to where the view should begin in the input `data` array. Default: `0`. 
+
+To cast the input `data` to a different underlying array data type, set the `dtype` option.
+	
+``` javascript
+var data = new Float32Array( 10 );
+
+// Cast the data array to a Float64Array:
+var view = ndarray( data, {
+	'dtype': 'float64'
+});
+```
+
+To create multidimensional views, specify the view `shape`.
+
+``` javascript
+// Create a 5x2 matrix:
+var view = ndarray( data, {
+	'shape': [5,2]
+});
+/* View:
+	[ 0 0
+	  0 0
+	  0 0
+	  0 0
+	  0 0 ]
+*/
+```
+
+To control how an input `data` array is indexed when creating a multidimensional view, specify the view `strides`.
+
+``` javascript
+var arr = new Float32Array( 20 );
+
+for ( var i = 0; i < arr.length; i++ ) {
+	arr[ i ] = i;
+}
+// => [0,1,2,3,...,19]
+
+// Create a custom 5x2 view using only the even indices `[0,2,4,...]`: 
+var view = ndarray( data, {
+	'shape': [5,2],
+	'strides': [10,2]
+});
+/* View:
+	[  0  2
+	   4  6
+	   8 10
+	  12 14
+	  16 18	]
+*/
+```
+
+To specify a custom view offset, set the `offset` option.
+
+``` javascript
+// Create a 5x2 view starting at the 10th element in the input array:
+var view = ndarray( data, {
+	'shape': [5,2],
+	'offset': 10
+});
+/* View:
+	[ 10 11
+	  12 13
+	  14 15
+	  16 17
+	  18 19 ]
+*/
+```
+
+
+
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-' );
+var ndarray = require( 'compute-ndarray' );
 ```
 
 To run the example code from the top-level application directory,
@@ -64,6 +148,12 @@ Istanbul creates a `./reports/coverage` directory. To access an HTML version of 
 ``` bash
 $ make view-cov
 ```
+
+
+## Credits
+
+This module was inspired by [ndarray](https://github.com/scijs/ndarray).
+
 
 
 ---

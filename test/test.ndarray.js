@@ -54,6 +54,7 @@ describe( 'ndarray', function tests() {
 		assert.isFunction( arr.set );
 		assert.isFunction( arr.get );
 		assert.isNumber( arr.offset );
+		assert.isNumber( arr.nbytes );
 	});
 
 });

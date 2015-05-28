@@ -8,6 +8,7 @@ TODO
 		-	from an `object` which implements set and get
 2. `order` (???)
 	-	name?
+	-	`sdims` ==> sorted dimensions
 3. WARNING:
 	-	dtypes, itypes, btypes, nbytes, and ctor cache all have to be kept in sync from a dev perspective. A change to one can affect others
 4. remove any unused mods
@@ -22,6 +23,10 @@ TODO
 	-	number (array)
 	- 	mixed => `generic`
 	-	complex => `[real,imaginary]`
+	-	how to accept? If bind `StringArray` directly to `.data`, then 3rd party methods cannot simply index into the underlying array
+		-	may need to copy the data ==> use `toArray()` method
+		-	bind the copied data to `.data`
+		-	means original data structure does not share the same underlying data
 7. benchmarks
 8. is `uint8_clamped` a separate `dtype`?
 9. separate mods
@@ -51,6 +56,7 @@ TODO
 	-	don't mutate `shape`
 	-	don't mutate `data`
 	-	=> the view will be corrupted
+	-	while having a `length` prop, an `ndarray` is __not__ array-like, meaning you cannot index into it
 13. casting to different data type
 	-	both main export and factory
 14. determine to handle sparse data structures implemented via objects/hashes.
@@ -61,6 +67,7 @@ TODO
 16. [cast mod](matlab)
 	-	see [also](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.astype.html)
 	-	focus on typed arrays; however, can branch out into string <=> boolean, string <=> number, etc.
+	-	see trev norris rules of thumb
 17. [class mod](matlab)
 	-	underlying data type
 	- 	compute-array-dtype
@@ -82,16 +89,14 @@ TODO
 22. should we accept `ArrayBuffer` input data?
 23. IntegerArray?
 	-	maybe not as hard to know the bounds
-24. 
+24. consider case of casting to a sparse data structure
+25. if `!ndims`, `length` should be `0`.
+26. 
 
 
 #### Tests
 
-1. 
-2. 
-3. factory
+1. factory
+2. ndarray
+3. ndarray.raw
 4. 
-5. getType
-6. ndarray
-7. ndarray.raw
-8. 

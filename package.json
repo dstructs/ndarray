@@ -1,7 +1,7 @@
 {
   "name": "compute-ndarray",
   "version": "0.0.0",
-  "description": "Multidimensional array constructor.",
+  "description": "Multidimensional arrays.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"
