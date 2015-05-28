@@ -214,9 +214,99 @@ var data = view.data;
 ```
 
 
+#### view.get( i, j, k,...)
+
+Returns an view element specified according to the provided subscripts.
+
+``` javascript
+var data = new Float32Array( 10 );
+
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = i;
+}
+// => [0,1,2,3,...,9]
+
+var view = ndarray( data, {
+	'shape': [5,2]
+});
+/* View:
+	[ 0 1
+	  2 3
+	  4 5
+	  6 7
+	  8 9 ]
+*/
+
+var value = view.get( 3, 1 );
+// returns 7
+```
+
+__Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and will return a value of `undefined`.
+
+
+#### view.set( i, j, k,..., value )
+
+Sets the view element specified according to the provided subscripts.
+
+``` javascript
+view.set( 3, 1, 20 );
+/* View:
+	[ 0 1
+	  2 3
+	  4 5
+	  6 20
+	  8 9 ]
+*/
+```
+
+__Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and may result in corrupted underlying data stores. Consumers are advised to validate indices before invoking the method.
 
 
 
+===
+### Raw
+
+For performance, a low-level API is provided which forgoes some of the guarantees of the above API, such as input argument validation and measures to prevent views from becoming corrupted. While use of the above API is encouraged in REPL environments, use of the lower-level interface may be warranted when arguments are of a known type or when many `ndarrays` must be created.
+
+
+#### ndarray.raw( data[, dtype[, shape[, offset[, strides ]]]] )
+
+Creates a new multidimensional `array`.
+
+``` javascript
+var data = new Float32Array( 10 );
+
+var view = ndarray.raw( data );
+```
+
+If the input `data` type is known, view creation is significantly faster.
+
+``` javascript
+var view = ndarray.raw( data, 'float32' );
+```
+
+__Note__: specifying a `dtype` does __not__ cast the data to a different storage type. Instead, providing the argument circumvents the needed to determine the input `data` type, resulting in increased performance.
+
+The `shape`, `offset`, and `strides` parameters are the same as above.
+
+
+### Views
+
+Views properties and methods are the same as for the higher-level API, with the exception that the following properties are __no__ longer read-only:
+
+* 	`offset`
+*	`strides`
+*	`shape`
+*	`length`
+*	`nbytes`
+*	`data`
+
+Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, any bugs resulting from setting properties will be silent. 
+
+
+
+
+---
 ## Examples
 
 ``` javascript
