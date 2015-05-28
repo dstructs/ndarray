@@ -17,6 +17,7 @@ ndarray
 		-	[Views](#ndarray-views)
 			-	[dtype](#view-dtype)
 			-	[ndims](#view-ndims)
+			-	[shape](#view-shape)
 			-	[offset](#view-offset)
 			-	[strides](#view-strides)
 			-	[length](#view-length)
@@ -184,6 +185,16 @@ var ndims = view.ndims;
 ```
 
 
+<a name="view-shape"></a>
+#### view.shape
+
+A __read-only__ property returning the view `shape`.
+
+``` javascript
+var shape = view.shape;
+// returns [...]
+```
+
 <a name="view-offset"></a>
 #### view.offset
 
@@ -201,16 +212,6 @@ A __read-only__ property returning the view `strides`.
 
 ``` javascript
 var strides = view.strides;
-// returns [...]
-```
-
-<a name="view-shape"></a>
-#### view.shape
-
-A __read-only__ property returning the view `shape`.
-
-``` javascript
-var shape = view.shape;
 // returns [...]
 ```
 
