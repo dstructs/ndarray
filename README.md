@@ -48,7 +48,7 @@ var view = ndarray( data, {
 });
 ```
 
-`dtype` may be any one of the following:
+A `dtype` may be any one of the following:
 
 * 	`int8`
 * 	`uint8`
@@ -85,10 +85,10 @@ var view = ndarray( data, {
 To control how an input `data` array is indexed when creating a multidimensional view, specify the view `strides`.
 
 ``` javascript
-var arr = new Float32Array( 20 );
+var data = new Float32Array( 20 );
 
-for ( var i = 0; i < arr.length; i++ ) {
-	arr[ i ] = i;
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = i;
 }
 // => [0,1,2,3,...,19]
 
@@ -216,7 +216,7 @@ var data = view.data;
 
 #### view.get( i, j, k,...)
 
-Returns an view element specified according to the provided subscripts.
+Returns a view element specified according to the provided subscripts.
 
 ``` javascript
 var data = new Float32Array( 10 );
@@ -246,7 +246,7 @@ __Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitt
 
 #### view.set( i, j, k,..., value )
 
-Sets the view element specified according to the provided subscripts.
+Sets a view element specified according to the provided subscripts.
 
 ``` javascript
 view.set( 3, 1, 20 );
@@ -271,9 +271,9 @@ Each `ndarray` view has a specialized constructor determined by the view `dtype`
 Creates a new multidimensional `array` having a specified `shape`, `offsets`, and `strides`.
 
 ``` javascript
-var d1 = new Float32Array( 10 );
+var data = new Float32Array( 10 );
 
-var view1 = ndarray( d1, {
+var view1 = ndarray( data, {
 	'shape': [5,2]
 });
 /* View:
@@ -284,9 +284,7 @@ var view1 = ndarray( d1, {
 	  0 0 ]
 */
 
-var d2 = new Float32Array( 20 );
-
-var view2 = view1.constructor( d2, [2,5] );
+var view2 = view1.constructor( data, [2,5] );
 /* View:
 	[ 0 0 0 0 0
 	  0 0 0 0 0 ]
