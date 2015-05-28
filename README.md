@@ -165,7 +165,7 @@ var view = ndarray( data, {
 Multidimensional views have the following properties and methods...
 
 
-<a name="view-dtype"></a>
+<a name="view-dtype" class="read-only-property"></a>
 #### view.dtype
 
 A __read-only__ property returning the underlying storage data type.
@@ -175,7 +175,7 @@ var dtype = view.dtype;
 // returns <string>
 ```
 
-<a name="view-ndims"></a>
+<a name="view-ndims" class="read-only-property"></a>
 #### view.ndims
 
 A __read-only__ property returning the number of view dimensions.
@@ -186,7 +186,7 @@ var ndims = view.ndims;
 ```
 
 
-<a name="view-shape"></a>
+<a name="view-shape" class="read-only-property"></a>
 #### view.shape
 
 A __read-only__ property returning the view `shape`.
@@ -196,7 +196,7 @@ var shape = view.shape;
 // returns [...]
 ```
 
-<a name="view-offset"></a>
+<a name="view-offset" class="read-only-property"></a>
 #### view.offset
 
 A __read-only__ property returning the view `offset`.
@@ -206,7 +206,7 @@ var offset = view.offset;
 // returns <number>
 ```
 
-<a name="view-strides"></a>
+<a name="view-strides" class="read-only-property"></a>
 #### view.strides
 
 A __read-only__ property returning the view `strides`.
@@ -216,7 +216,7 @@ var strides = view.strides;
 // returns [...]
 ```
 
-<a name="view-length"></a>
+<a name="view-length" class="read-only-property"></a>
 #### view.length
 
 A __ready-only__ property returning the view `length`; i.e., how many elements are in the view, similar to `Array#length`.
@@ -226,7 +226,7 @@ var len = view.length;
 // returns <number>
 ```
 
-<a name="view-nbytes"></a>
+<a name="view-nbytes" class="read-only-property"></a>
 #### view.nbytes
 
 A __read-only__ property returning the number of bytes consumed by the view elements.
@@ -247,7 +247,7 @@ var nbytes = view.nbytes;
 // returns null
 ```
 
-<a name="view-data"></a>
+<a name="view-data" class="read-only-property"></a>
 #### view.data
 
 A __read-only__ property pointing to the underlying storage array.
@@ -514,13 +514,13 @@ $ make view-cov
 ```
 
 
+
+---
 ## Credits
 
 This module was inspired by [ndarray](https://github.com/scijs/ndarray).
 
 
-
----
 ## License
 
 [MIT license](http://opensource.org/licenses/MIT). 
