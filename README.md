@@ -5,6 +5,34 @@ ndarray
 > Multidimensional arrays.
 
 
+## Table of Contents
+
+1. [Usage](#usage)
+	-	[ndarray](#ndarray)
+		-	[options](#ndarray-options)
+			-	[dtype](#option-dtype)
+			-	[shape](#option-shape)
+			-	[offset](#option-offset)
+			-	[strides](#option-strides)
+		-	[Views](#ndarray-views)
+			-	[dtype](#view-dtype)
+			-	[ndims](#view-ndims)
+			-	[offset](#view-offset)
+			-	[strides](#view-strides)
+			-	[length](#view-length)
+			-	[nbytes](#view-nbytes)
+			-	[data](#view-data)
+			-	[get](#view-get)
+			-	[set](#view-set)
+		-	[Constructors](#ndarray-constructors)
+	-	[ndarray.raw](#ndarray-raw)
+		-	[Views](#ndarray-raw-views)
+		-	[Constructors](#ndarray-raw-constructors)
+	-	[ndarray.factory](#ndarray-factory)
+	-	[ndarray.rawFactory](#ndarray-raw-factory)
+1. [Examples](#examples)
+
+
 ## Installation
 
 ``` bash
@@ -20,6 +48,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 var ndarray = require( 'compute-ndarray' );
 ```
 
+<a name="ndarray"></a>
 #### ndarray( data[, options] )
 
 Creates a new multidimensional `array`.
@@ -30,11 +59,16 @@ var data = new Float32Array( 10 );
 var view = ndarray( data );
 ```
 
+<a name="ndarray-options"></a>
 The `ndarray` constructor accepts the following `options`:
 
+<a name="option-dtype"></a>
 *	__dtype__: specifies the underlying storage data type. If the input `data` is not of the same type, the `data` is cast to the specified `dtype`.
+<a name="option-shape"></a>
 *	__shape__: specifies the array `shape`. Default: `[ data.length ]`.
+<a name="option-strides"></a>
 *	__strides__: specifies the array `strides`, which describe how to index into the input `data` array to create a multidimensional view.
+<a name="option-offset"></a>
 *	__offset__: specifies the view `offset`, which points to where the view should begin in the input `data` array. Default: `0`. 
 
 To cast the input `data` to a different underlying array data type, set the `dtype` option.
@@ -123,11 +157,13 @@ var view = ndarray( data, {
 */
 ```
 
+<a name="ndarray-views"></a>
 ### Views
 
 Multidimensional views have the following properties and methods...
 
 
+<a name="view-dtype"></a>
 #### view.dtype
 
 A __read-only__ property returning the underlying storage data type.
@@ -137,7 +173,7 @@ var dtype = view.dtype;
 // returns <string>
 ```
 
-
+<a name="view-ndims"></a>
 #### view.ndims
 
 A __read-only__ property returning the number of view dimensions.
@@ -148,6 +184,7 @@ var ndims = view.ndims;
 ```
 
 
+<a name="view-offset"></a>
 #### view.offset
 
 A __read-only__ property returning the view `offset`.
@@ -157,6 +194,7 @@ var offset = view.offset;
 // returns <number>
 ```
 
+<a name="view-strides"></a>
 #### view.strides
 
 A __read-only__ property returning the view `strides`.
@@ -166,6 +204,7 @@ var strides = view.strides;
 // returns [...]
 ```
 
+<a name="view-shape"></a>
 #### view.shape
 
 A __read-only__ property returning the view `shape`.
@@ -175,6 +214,7 @@ var shape = view.shape;
 // returns [...]
 ```
 
+<a name="view-length"></a>
 #### view.length
 
 A __ready-only__ property returning the view `length`; i.e., how many elements are in the view, similar to `Array#length`.
@@ -184,6 +224,7 @@ var len = view.length;
 // returns <number>
 ```
 
+<a name="view-nbytes"></a>
 #### view.nbytes
 
 A __read-only__ property returning the number of bytes consumed by the view elements.
@@ -204,6 +245,7 @@ var nbytes = view.nbytes;
 // returns null
 ```
 
+<a name="view-data"></a>
 #### view.data
 
 A __read-only__ property pointing to the underlying storage array.
@@ -214,6 +256,7 @@ var data = view.data;
 ```
 
 
+<a name="view-get"></a>
 #### view.get( i, j, k,...)
 
 Returns a view element specified according to the provided subscripts.
@@ -244,6 +287,7 @@ var value = view.get( 3, 1 );
 __Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and will return either a value of `undefined` or a value located outside the view domain.
 
 
+<a name="view-set"></a>
 #### view.set( i, j, k,..., value )
 
 Sets a view element specified according to the provided subscripts.
@@ -262,6 +306,7 @@ view.set( 3, 1, 20 );
 __Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and may result in corrupted underlying data stores. Consumers are advised to validate indices before invoking the method.
 
 
+<a name="ndarray-constructors"></a>
 ### Constructors
 
 Each `ndarray` view has a specialized constructor determined by the view `dtype` and `ndims`. Every constructor has the same API which is as follows...
@@ -301,6 +346,7 @@ Constructing views in this manner provides a shortcut for creating views with kn
 For performance, a low-level API is provided which forgoes some of the guarantees of the above API, such as input argument validation and measures to prevent views from becoming corrupted. While use of the above API is encouraged in REPL environments, use of the lower-level interface may be warranted when arguments are of a known type or when many `ndarrays` must be created.
 
 
+<a name="ndarray-raw"></a>
 #### ndarray.raw( data[, dtype[, shape[, offset[, strides ] ] ] ] )
 
 Creates a new multidimensional `array`.
@@ -322,6 +368,7 @@ __Note__: specifying a `dtype` does __not__ cast the data to a different storage
 The `shape`, `offset`, and `strides` parameters are the same as above.
 
 
+<a name="ndarray-raw-views"></a>
 ### Views
 
 Views properties and methods are the same as for the higher-level API, with the exception that the following properties are __no__ longer read-only:
@@ -336,6 +383,7 @@ Views properties and methods are the same as for the higher-level API, with the 
 Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, modifying the properties may introduce bugs which are silent. 
 
 
+<a name="ndarray-raw-constructors"></a>
 ### Constructors
 
 Constructors produced using the low-level API have the same interface as those created via the higher-level API.
