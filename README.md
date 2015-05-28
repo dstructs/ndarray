@@ -241,7 +241,7 @@ var value = view.get( 3, 1 );
 // returns 7
 ```
 
-__Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and will return a value of `undefined`.
+__Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and will return either a value of `undefined` or a value located outside the view domain.
 
 
 #### view.set( i, j, k,..., value )
@@ -262,6 +262,40 @@ view.set( 3, 1, 20 );
 __Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitted and may result in corrupted underlying data stores. Consumers are advised to validate indices before invoking the method.
 
 
+### Constructors
+
+Each `ndarray` view has a specialized constructor determined by the view `dtype` and `ndims`. Every constructor has the same API which is as follows...
+
+#### view.constructor( data, shape, offset, strides )
+
+Creates a new multidimensional `array` having a specified `shape`, `offsets`, and `strides`.
+
+``` javascript
+var d1 = new Float32Array( 10 );
+
+var view1 = ndarray( d1, {
+	'shape': [5,2]
+});
+/* View:
+	[ 0 0
+	  0 0
+	  0 0
+	  0 0
+	  0 0 ]
+*/
+
+var d2 = new Float32Array( 20 );
+
+var view2 = view1.constructor( d2, [2,5] );
+/* View:
+	[ 0 0 0 0 0
+	  0 0 0 0 0 ]
+*/
+```
+
+Constructing views in this manner provides a shortcut for creating views with known parameters and having the same underlying data type and dimensions.
+
+
 
 ===
 ### Raw
@@ -269,7 +303,7 @@ __Note__: subscripts are __not__ validated. Out-of-bounds subscripts are permitt
 For performance, a low-level API is provided which forgoes some of the guarantees of the above API, such as input argument validation and measures to prevent views from becoming corrupted. While use of the above API is encouraged in REPL environments, use of the lower-level interface may be warranted when arguments are of a known type or when many `ndarrays` must be created.
 
 
-#### ndarray.raw( data[, dtype[, shape[, offset[, strides ]]]] )
+#### ndarray.raw( data[, dtype[, shape[, offset[, strides ] ] ] ] )
 
 Creates a new multidimensional `array`.
 
@@ -301,7 +335,18 @@ Views properties and methods are the same as for the higher-level API, with the 
 *	`nbytes`
 *	`data`
 
-Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, any bugs resulting from setting properties will be silent. 
+Setting these properties is __not__ recommended as the view can become corrupted; e.g., incompatible dimensions, out-of-bounds indexing, etc. In contrast to the strict API above, setting these properties will __not__ result in an error being thrown. Accordingly, modifying the properties may introduce bugs which are silent. 
+
+
+### Constructors
+
+Constructors produced using the low-level API have the same interface as those created via the higher-level API.
+
+
+
+===
+### Factory
+
 
 
 
